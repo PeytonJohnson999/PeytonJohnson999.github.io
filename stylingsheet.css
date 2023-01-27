@@ -1,0 +1,174 @@
+body 
+{
+    background-image: url("https://cdn.ucberkeleybootcamp.com/wp-content/uploads/sites/106/2021/03/CDG_blog_post_image_02-850x412.jpg");
+    color: rgb(0, 0, 0);
+    padding: 10px;
+    font-family: arial;
+}
+
+.links_TopBar
+{
+    border-radius: 25px;
+}
+
+#all-contents 
+{
+    max-width: 800px;
+    margin: auto;
+}
+ 
+/* navigation menu */
+nav 
+{
+    background: #1c3a96;
+    margin-bottom: 20px;
+    display: flex;
+    padding: 10px;
+    border-radius: 0;
+    border: 4px #4adaf5 ridge;
+}
+
+h1 
+{
+    display: flex;
+    align-items: center;
+    color: rgb(0, 0, 0);
+    flex: 1;
+    margin: 0;
+}
+
+#nav-ul 
+{
+    list-style-image: none;
+}
+
+.nav-li 
+{
+    display: inline-block;
+    padding: 0 10px;
+}
+
+a {
+    text-decoration: none;
+    color: rgb(0, 0, 0);
+}
+ 
+/* main container area beneath menu */
+.basic_Main 
+{
+    background: #1c3a96;
+    display: flex;
+    border: 4px #4adaf5 ridge;
+    width: 1000px;
+    height: 400px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#home_content_div
+{
+    height: 250px;
+    margin-right: auto;
+    margin-left: auto;
+}
+    
+#home_Sidebar_Image_Div
+{
+    margin-right: 25px;
+    padding: 0px;
+    width: 450px;
+    height: 346px;
+    margin-left: 12px;
+    margin-top: 19px;
+    
+}
+
+#sidebar-img 
+{
+    width: 450px;
+    height: 346px;
+}
+
+.content 
+{
+    flex: 1;
+    padding: 15px;
+}
+
+#interests 
+{
+    border: 4px rgb(0, 0, 0) ridge;
+    padding: 8px;
+}
+
+h2, h3 
+{
+    margin: 0px;
+}
+
+#FDB_Div
+{
+    margin-top: 4px;
+    border: 4px black ridge;
+}
+
+#FDB_Header
+{
+    margin-left: 8px;
+}
+
+
+/*___________*/
+/* portfolio */
+/*          */
+/*         */
+/*        */
+/*       */
+/*      */
+/*     */
+/*    */
+/*   */
+/*  */
+/* */
+/**/
+
+#sidebar_H3_1
+{
+    margin-left: 8px;
+}
+
+#sidebar_H3_2
+{
+    margin-left: 8px;
+}
+
+#sidebar_Div
+{
+    width: 400px;
+    margin-top: 20px;
+}
+
+#portfolio_Sidebar_List_3_P
+{
+    color: red;
+}
+
+.sidebar_List_3
+{
+    text-decoration: underline;
+}
+
+#portfolio_Main
+{
+    height: 600px;
+}
+
+nav
+{
+    width: 1250px;
+}
+
+#portfolio_Portfolio_List
+{
+    text-decoration: underline;
+}
