@@ -6,7 +6,7 @@ body
     font-family: arial;
 }
 
-.links_TopBar
+.links-TopBar
 {
     border-radius: 25px;
 }
@@ -26,6 +26,7 @@ nav
     padding: 10px;
     border-radius: 0;
     border: 4px #4adaf5 ridge;
+    width: 1250px;
 }
 
 h1 
@@ -37,7 +38,7 @@ h1
     margin: 0;
 }
 
-#nav-ul 
+.nav-ul 
 {
     list-style-image: none;
 }
@@ -54,25 +55,25 @@ a {
 }
  
 /* main container area beneath menu */
-.basic_Main 
+main 
 {
     background: #1c3a96;
     display: flex;
     border: 4px #4adaf5 ridge;
     width: 1000px;
-    height: 400px;
+    height: 600px;
     margin-left: auto;
     margin-right: auto;
 }
 
-#home_content_div
+#ContentDiv
 {
-    height: 250px;
+    height: 346px;
     margin-right: auto;
     margin-left: auto;
 }
     
-#home_Sidebar_Image_Div
+#SidebarImageDiv
 {
     margin-right: 25px;
     padding: 0px;
@@ -87,88 +88,88 @@ a {
 {
     width: 450px;
     height: 346px;
+    border: 2px black ridge;
 }
 
 .content 
 {
     flex: 1;
     padding: 15px;
+    border-radius: 10px;
+    font-size: large;
 }
 
-#interests 
+.content2
 {
-    border: 4px rgb(0, 0, 0) ridge;
-    padding: 8px;
+    
+    border: 3px black ridge;
 }
+
+
 
 h2, h3 
 {
     margin: 0px;
 }
 
-#FDB_Div
-{
-    margin-top: 4px;
-    border: 4px black ridge;
-}
 
-#FDB_Header
+#FDB-Header
 {
     margin-left: 8px;
 }
 
 
-/*___________*/
-/* portfolio */
-/*          */
-/*         */
-/*        */
-/*       */
-/*      */
-/*     */
-/*    */
-/*   */
-/*  */
-/* */
-/**/
 
-#sidebar_H3_1
+#sidebar-Header1
 {
     margin-left: 8px;
 }
 
-#sidebar_H3_2
+#sidebar-Header2
 {
     margin-left: 8px;
 }
 
-#sidebar_Div
+#interestsHeader
+{
+    margin-left: 8px;
+}
+
+#projectsHeader
+{
+    margin-left: 8px;
+}
+
+#sidebar-Div
 {
     width: 400px;
-    margin-top: 20px;
 }
 
-#portfolio_Sidebar_List_3_P
+#sidebar-Warning
 {
-    color: red;
+    color: rgb(255, 0, 0);
+    font-weight: bold;
 }
 
-.sidebar_List_3
+.ProjectsList
 {
     text-decoration: underline;
 }
 
-#portfolio_Main
+#portfolio-Main
 {
     height: 600px;
 }
 
-nav
-{
-    width: 1250px;
-}
 
-#portfolio_Portfolio_List
+
+#portfolio-List
 {
     text-decoration: underline;
+}
+
+
+#projectsDiv
+{
+    text-size-adjust: 20px;
 }

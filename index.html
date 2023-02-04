@@ -17,7 +17,7 @@
         <div id = "all contents"> 
 
             <!-- Nav -->
-            <nav class = "links_TopBar" aid = "index_LinksNav"> 
+            <nav class = "links-TopBar" id = "index-LinksNav"> 
 
                 <!-- Website Title -->
                 <h1>
@@ -25,18 +25,23 @@
                 </h1>
                 
                 <!-- Links List -->
-                <ul id = "nav-ul"> 
+                <ul class = "nav-ul"> 
 
                     <!-- Link 1 -->
-                    <li id = "nav-li"> 
+                    <li class = "nav-li"> 
 
                         <a href = "index.html"> Home </a>
 
                     </li>
                     
                     <!-- Link 2 -->
-                    <li id = "nav-li">
+                    <li class = "nav-li">
                         <a href = "portfolio.html"> Portfolio </a>
+                    </li>
+                    
+                    <!-- Projects Link -->
+                    <li class = "nav-li">
+                        <a href = "projects.html"> Projects </a>
                     </li>
 
                 </ul>
@@ -44,18 +49,18 @@
             </nav>
 
             <!-- Main -->
-            <main class = "basic_Main">
+            <main>
 
                 <!-- Sidebar -->
-                <div id = "home_Sidebar_Image_Div"> 
+                <div id = "SidebarImageDiv"> 
 
                     <!-- Sidebar Image -->
-                    <img id = "sidebar-img" src="https://www.akc.org/wp-content/uploads/2015/11/Cane-Corso-standing-in-the-park.jpg" width = "500">
+                    <img id = "sidebar-img" src = "https://www.akc.org/wp-content/uploads/2015/11/Cane-Corso-standing-in-the-park.jpg" width = "500">
 
                 </div>
 
                 <!-- Content Section -->
-                <div class = "content" id = "home_content_div">
+                <div class = "content" id = "ContentDiv">
 
                     <!-- My Name -->
                     <h2>
@@ -67,11 +72,17 @@
                         Student at Hahnville High School
                     </p>
 
-                    <!-- Interests Section -->
-                    <div id = "interests">
+                    
 
+                        
+
+                    
+                    
+                    <!-- Favorite Dog Breeds Div -->
+                    <div class = "content2" id = "FDB-Div">
+                        
                         <!-- Interests header -->
-                        <h3> 
+                        <h3 id = "interestsHeader"> 
                             Interests
                         </h3>
 
@@ -92,37 +103,70 @@
 
                         </ul>
 
-                    </div>
-                    
-                    <!-- FDB Div -->
-                    <div class = FDB id = "FDB_Div">
-                        
                         <!-- FDB header-->
-                        <h3 class = FDB id = "FDB_Header">
+                        <h3 class = FDB id = "FDB-Header">
                             Favorite Dog Breeds
                         </h3>
                             
                         <!-- FDB List -->
-                        <ul class = FDB id = FDB_List>
+                        <ul>
                             
                             <!-- FDB List #1 -->
-                            <li class = FDB id = FDB_#1>
+                            <li class = FDB>
                                 English Mastiff
                             </li>
                             
                             <!-- FDB List #2 -->
-                            <li class = FDB id = FDB_#2>
+                            <li class = FDB>
                                 Italian Mastiff
                             </li>
                             
                             <!-- FDB List #3 -->
-                            <li class = FDB id = FDB_#3>
+                            <li class = FDB>
                                 Rottweiler
                             </li>
                             
                         </ul>
                         
-                    </div>
+                    
+                    
+                    <!-- Sidebar List 1 Header -->
+                    <h3 id = "sidebar-Header1"> My Coding Languages </h3>
+                    
+                    <!-- Sidebar List 1 -->
+                    <ul>
+                    
+                        <li class = "sidebar-List">
+                            C++
+                        </li>
+                        
+                        <li class = "sidebar-List">
+                            Lua
+                        </li>
+                        
+                        <li class = "sidebar-List">
+                            HTML, CSS
+                        </li>
+                        
+                    </ul>
+                    
+                    <!-- Sidebar List 2 Header -->
+                    <h3 id = "sidebar-Header2"> My Coding Experiences </h3>
+                    
+                    <!-- Sidebar List 2 -->
+                    <ul>
+                        
+                        <li class = "sidebar-List">
+                            Created a roblox game
+                        </li>
+                        
+                        <li class = "sidebar-List">
+                            Multiple coding projects on OnlineGDB
+                        </li>
+                            
+                    </ul>
+
+                </div>
 
                 </div>
 
