@@ -6,10 +6,6 @@ body
     font-family: arial;
 }
 
-.links-TopBar
-{
-    border-radius: 25px;
-}
 
 #all-contents 
 {
@@ -27,6 +23,9 @@ nav
     border-radius: 0;
     border: 4px #4adaf5 ridge;
     width: 1250px;
+    border-radius: 25px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 h1 
