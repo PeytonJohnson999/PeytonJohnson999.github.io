@@ -22,7 +22,6 @@ nav
     padding: 10px;
     border-radius: 0;
     border: 4px #4adaf5 ridge;
-    width: 1250px;
     border-radius: 25px;
     margin-left: auto;
     margin-right: auto;
@@ -40,12 +39,18 @@ h1
 .nav-ul 
 {
     list-style-image: none;
+    font-weight: bold;
+    
 }
 
 .nav-li 
 {
     display: inline-block;
-    padding: 0 10px;
+    background: #4adaf5;
+    padding: 10px;
+    border-radius: 20px;
+    margin-right: 10px;
+
 }
 
 a {
@@ -60,14 +65,14 @@ main
     display: flex;
     border: 4px #4adaf5 ridge;
     width: 1000px;
-    height: 600px;
+    height: auto;
     margin-left: auto;
     margin-right: auto;
 }
 
 #ContentDiv
 {
-    height: 346px;
+    height: auto;
     margin-right: auto;
     margin-left: auto;
 }
@@ -155,20 +160,44 @@ h2, h3
     text-decoration: underline;
 }
 
-#portfolio-Main
-{
-    height: 600px;
-}
 
 
 
-#portfolio-List
-{
-    text-decoration: underline;
-}
 
 
 #projectsDiv
 {
     text-size-adjust: 20px;
+}
+
+/* portfolio styles */
+.content h1 
+{
+    color: black;
+}
+
+#portfolio 
+{
+    list-style-type: none;
+    padding-left: 0;
+    text-decoration: underline;
+}
+
+#portfolio li 
+{
+    background: #4adaf5;
+    padding: 10px;
+    border-radius: 10px;
+    margin-bottom: 10px;
+}
+
+#portfolio li:hover 
+{
+    background: #eee;
+}
+
+#portfolio a 
+{
+    text-decoration: none;
+    color: #454545;
 }
