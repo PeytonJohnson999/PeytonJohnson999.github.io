@@ -30,8 +30,20 @@ $(function () {
     // You must decide the x position, y position, width, and height of the platforms
     // example usage: createPlatform(x,y,width,height)
 
-    
-    
+    createPlatform(500, 650, 50, 10); //First Platform
+    createPlatform(500, 525, 50, 10); //Second Platform
+    createPlatform(700, 525, 150, 10); //Third Platform
+    createPlatform(1045, 525, 150, 10); //Fourth Platform
+    createPlatform(1055, 400, 145, 10); //Fifth Platform
+    createPlatform(455, 275, 750, 10); //Big platform
+    createPlatform(1150, 155, 10, 120); //Wall between collectible and the big platform
+    createPlatform(1055, 150, 10, 125); //Second Wall
+    createPlatform(955, 145, 10, 130); //Third Wall
+    createPlatform(855, 140, 10, 135); //Fourth Wall
+    createPlatform(755, 135, 10, 140); //Fifth Wall
+    createPlatform(655, 130, 10, 145); //Sixth Wall
+    createPlatform(555, 125, 10, 150); //Seventh Wall
+    createPlatform(455, -5, 10, 290);//Big wall
     
     
     
@@ -40,8 +52,14 @@ $(function () {
     // You must decide on the collectable type, the x position, the y position, the gravity, and the bounce strength
     // Your collectable choices are 'database' 'diamond' 'grace' 'kennedi' 'max' and 'steve'; more can be added if you wish
     // example usage: createCollectable(type, x, y, gravity, bounce)
-    
-    
+    createCollectable('database', 1160, 235, 0, 0.5);
+    createCollectable('database', 1065, 235, 0, 0.5);
+    createCollectable('database', 965, 235, 0, 0.5);
+    createCollectable('database', 865, 235, 0, 0.5);
+    createCollectable('database', 765, 235, 0, 0.5);
+    createCollectable('database', 665, 235, 0, 0.5);
+    createCollectable('database', 565, 235, 0, 0.5);
+    createCollectable('database', 465, 235, 0, 0.5);
     
     
     
@@ -50,7 +68,7 @@ $(function () {
     // You must decide the wall you want the cannon on, the position on the wall, and the time between shots in milliseconds
     // Your wall choices are: 'top' 'left' 'right' and 'bottom'
     // example usage: createCannon(side, position, delay)
-
+    createCannon(screenLeft, 235, 0);
 
 
 
