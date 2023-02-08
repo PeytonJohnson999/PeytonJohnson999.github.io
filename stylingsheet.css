@@ -70,14 +70,9 @@ main
     margin-right: auto;
 }
 
-#ContentDiv
-{
-    height: auto;
-    margin-right: auto;
-    margin-left: auto;
-}
+
     
-#SidebarImageDiv
+#sidebar
 {
     margin-right: 25px;
     padding: 0px;
