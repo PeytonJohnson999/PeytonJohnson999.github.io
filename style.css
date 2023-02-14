@@ -7,11 +7,10 @@ body
 }
 
 
-#all-contents 
+.all-contents 
 {
     max-width: 800px;
     margin: auto;
-    /*display: flex;*/
 }
  
 /* navigation menu */
@@ -65,7 +64,6 @@ main
     background: #1c3a96;
     display: flex;
     border: 4px #4adaf5 ridge;
-    width: 1000px;
     height: auto;
     margin-left: auto;
     margin-right: auto;
@@ -75,7 +73,7 @@ main
     
 .sidebar
 {
-    margin-right: 25px;
+    /*margin-right: 25px;*/
     padding: 10px;
     width: 450px;
     height: 346px;
@@ -86,9 +84,9 @@ main
 
 .sidebar-img 
 {
-    width: 450px;
-    height: 346px;
+    width: 400px;
     border: 2px black ridge;
+    margin: flex;
 }
 
 .content 
@@ -112,7 +110,7 @@ h2, h3
 
 
 #interests {
-    border: 4px silver ridge;
+    border: 4px #4adaf5 ridge;
     padding: 8px;
 }
 
