@@ -8,7 +8,7 @@
 		.box {
 			width: 70px;
 			height: 70px;
-			background-color: teal;
+			background-color: rgb(255, 0, 0);
 			font-size: 300%;
 			text-align: center;
 			user-select: none;
@@ -19,6 +19,7 @@
 		}
 		.board{
 			height: 100vh;
+			width: auto;
 		}
 	</style>
 	<!-- 	<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script> -->
@@ -40,17 +41,26 @@
 			var box = jQuery('.box');	// reference to the HTML .box element
 			var board = jQuery('.board');	// reference to the HTML .board element
 			var boardWidth = board.width();	// the maximum X-Coordinate of the screen
+			
 
 			// Every 50 milliseconds, call the update Function (see below)
-			setInterval(update, 50);
+			var interval = setInterval(update, 50);
 			
 			// Every time the box is clicked, call the handleBoxClick Function (see below)
 			box.on('click', handleBoxClick);
+			board.on('click', handleBoardClick);
+			if (misclicks >= 10)
+			{
+				alert("You lost");
+			}
 
 			// moves the Box to a new position on the screen along the X-Axis
-			function moveBoxTo(newPositionX) {
+			function moveBoxTo(newPositionX, newPositionY) {
 				box.css("left", newPositionX);
+				box.css("top", newPositionY);
 			}
+
+
 
 			// changes the text displayed on the Box
 			function changeBoxText(newText) {
@@ -62,6 +72,52 @@
 			//////////////////////////////////////////////////////////////////
 			
 			// TODO 2 - Variable declarations 
+			var boardHeight = board.height(); // Maximum Y Coordinates of the screen
+			var positionX = 0; // X Coordinates for the box
+			var positionY = 0; // Y Coordinates for the box
+			var points = 0; // Points
+			var speedY = 10; // Box's  X speed
+			var speedX = 10; //Box's Y speed
+			var colorStr;
+			var misclicks = 0;
+			var gameOver = false;
+
+			//Functions
+			function genRandNumBW()//BW stands for board width and separates this function from 
+			//other randum number generating functions I create 
+			{
+				var randNum = Math.floor((Math.random() * boardWidth) + 1);// Creates a random number between 1(including) and the board's width(including)
+				return randNum;
+			}
+
+			function genRandNumBH()//BH stand for board height
+			{
+				var randNum = Math.floor((Math.random() * boardHeight) + 1);// Creates a random number between 1 and the board's height
+				return randNum;
+			}
+
+			function genRandNumRGB()// This is used for colors
+			{
+				var randNum = Math.floor((Math.random() * 255) + 1);
+				return randNum;
+			}
+
+			function endGame()
+			{
+				clearInterval(interval);
+			}
+
+			function handleBoardClick()
+			{
+				misclicks = misclicks + 1;
+				/*if (misclicks >= 10)
+				{
+					endGame();
+					changeBoxText("GAME OVER");
+					gameOver = true;
+				}*/
+			}
+
 			
 
 			
@@ -70,7 +126,42 @@
 			it should move the Box to a new location. If the box drifts off the screen
 			turn it around! 
 			*/
-			function update() {
+			function update() 
+			{
+				//We want to increase the value of position x and y by 10
+				positionX += speedX;
+				positionY += speedY;
+				if(positionX > boardWidth)
+				{
+					//positionX = 0;
+					speedX = speedX * -1;
+					console.log("Position X is greater than the board's width");
+				}
+				else if (positionX < 0)
+				{
+					//positionX = 0;
+					speedX = speedX * -1;
+					console.log("Position X is less than 0");
+				}
+				
+				if(positionY > boardHeight)
+				{
+					speedY = speedY * -1;
+					console.log("Position Y is greater than the board's height")
+				}
+				else if(positionY < 0)
+				{
+					speedY = speedY * -1;
+					console.log("Position Y is less than 0")
+				}
+
+				
+
+				moveBoxTo(positionX, positionY);
+				moveBoxTo(positionX, positionY);
+				//
+				//
+				//
 				
 
 			};
@@ -81,9 +172,54 @@
 			the left side of the screen.
 			*/
 			function handleBoxClick() {
+				if (gameOver !== true && points < 10)
+				{
+					positionX = genRandNumBW();
+					positionY = genRandNumBH();
+
+					if(Math.sign(positionX) === -1)
+					{
+						positionX = positionX * -1;
+					}
+
+					if (Math.sign(positionY) === -1)
+					{
+						positionY = positionY * -1;
+					}
+
+
+					points += 1;
+					/*if (Math.sign(speedX) === -1)
+					{
+						speedX = speedX - 5;
+					}
+					else if (Math.sign(speedX) === -1)
+					{
+						speedX = speedX + 5;
+					}
+					if (Math.sign(speedY) === -1)
+					{
+						speedY = speedY - 5;
+					}
+					else if (Math.sign(speedY) === 1)
+					{
+						speedY = speedY + 5;
+					}*/
+					changeBoxText(points);
+					colorStr = "rgb(" + genRandNumRGB() + ", " + genRandNumRGB() + ", " + genRandNumRGB() + ")";
+					box.css('background-color', colorStr);
+					if(points >= 10)
+					{
+						changeBoxText("YOU WON");
+						endGame();
+					}
+				}
 				
 
-
+				else
+				{
+					//Do nothing if the game is over
+				}
 			};
 		})();
 	</script>
