@@ -20,6 +20,7 @@
 		.board{
 			height: 100vh;
 			width: auto;
+			background-image: url("https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/how-to-keep-ducks-call-ducks-1615457181.jpg?crop=0.669xw:1.00xh;0.166xw,0&resize=1200:*");
 		}
 	</style>
 	<!-- 	<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script> -->
@@ -81,6 +82,8 @@
 			var colorStr;
 			var misclicks = 0;
 			var gameOver = false;
+			var boxClicks = 0;
+			var speedIncrease = 5;
 
 			//Functions
 			function genRandNumBW()//BW stands for board width and separates this function from 
@@ -110,12 +113,12 @@
 			function handleBoardClick()
 			{
 				misclicks = misclicks + 1;
-				/*if (misclicks >= 10)
+				if (misclicks >= 10)
 				{
 					endGame();
 					changeBoxText("GAME OVER");
 					gameOver = true;
-				}*/
+				}
 			}
 
 			
@@ -174,6 +177,7 @@
 			function handleBoxClick() {
 				if (gameOver !== true && points < 10)
 				{
+					boxClicks = boxClicks + 1;
 					positionX = genRandNumBW();
 					positionY = genRandNumBH();
 
@@ -189,25 +193,29 @@
 
 
 					points += 1;
-					/*if (Math.sign(speedX) === -1)
+					if (Math.sign(speedX) === -1)
 					{
-						speedX = speedX - 5;
+						speedX = speedX - speedIncrease;
 					}
 					else if (Math.sign(speedX) === -1)
 					{
-						speedX = speedX + 5;
+						speedX = speedX + speedIncrease;
 					}
 					if (Math.sign(speedY) === -1)
 					{
-						speedY = speedY - 5;
+						speedY = speedY - speedIncrease;
 					}
 					else if (Math.sign(speedY) === 1)
 					{
-						speedY = speedY + 5;
-					}*/
+						speedY = speedY + speedIncrease;
+					}
 					changeBoxText(points);
-					colorStr = "rgb(" + genRandNumRGB() + ", " + genRandNumRGB() + ", " + genRandNumRGB() + ")";
-					box.css('background-color', colorStr);
+					if(boxClicks % 3 === 0)
+					{
+						colorStr = "rgb(" + genRandNumRGB() + ", " + genRandNumRGB() + ", " + genRandNumRGB() + ")";
+						box.css('background-color', colorStr);
+						speedIncrease = speedIncrease + 3
+					}
 					if(points >= 10)
 					{
 						changeBoxText("YOU WON");
