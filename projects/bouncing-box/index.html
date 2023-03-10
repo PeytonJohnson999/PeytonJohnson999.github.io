@@ -17,6 +17,8 @@
 			top: 100px;
 			left: 0px;  /* <--- Change me! */
 		}
+
+
 		.board{
 			height: 100vh;
 			width: auto;
@@ -44,6 +46,7 @@
 			var box = jQuery('.box');	// reference to the HTML .box element
 			var board = jQuery('.board');	// reference to the HTML .board element
 			var boardWidth = board.width();	// the maximum X-Coordinate of the screen
+			
 			
 
 			// Every 50 milliseconds, call the update Function (see below)
@@ -107,12 +110,12 @@
 				return randNum;
 			}
 
-			function endGame()
+			function endGame() // Stops the box from moving to end the game
 			{
 				clearInterval(interval);
 			}
 
-			function handleBoardClick()
+			function handleBoardClick() // Handles when you misclick
 			{
 				misclicks = misclicks + 1;
 				if (misclicks >= 10)
@@ -120,6 +123,7 @@
 					endGame();
 					changeBoxText("GAME OVER");
 					gameOver = true;
+					setTimeout(location.reload(), 3000);
 				}
 			}
 
@@ -140,24 +144,24 @@
 				{
 					//positionX = 0;
 					speedX = speedX * -1;
-					console.log("Position X is greater than the board's width");
+					//console.log("Position X is greater than the board's width");
 				}
 				else if (positionX < 0)
 				{
 					//positionX = 0;
 					speedX = speedX * -1;
-					console.log("Position X is less than 0");
+					//console.log("Position X is less than 0");
 				}
 				
 				if(positionY > boardHeight)
 				{
 					speedY = speedY * -1;
-					console.log("Position Y is greater than the board's height")
+					//console.log("Position Y is greater than the board's height")
 				}
 				else if(positionY < 0)
 				{
 					speedY = speedY * -1;
-					console.log("Position Y is less than 0")
+					//console.log("Position Y is less than 0")
 				}
 
 				
@@ -195,7 +199,7 @@
 
 
 					points += 1;
-					if (Math.sign(speedX) === -1)
+					if (Math.sign(speedX) === -1)//Changes speed if the box is moving left
 					{
 						speedX = speedX - speedIncrease;
 					}
@@ -211,13 +215,15 @@
 					{
 						speedY = speedY + speedIncrease;
 					}
+
 					changeBoxText(points);
-					if(boxClicks % 3 === 0)
+					if(boxClicks % 3 === 0)//Every 3 clicks, change the color of the box to a random color and change speed increase of the box
 					{
 						colorStr = "rgb(" + genRandNumRGB() + ", " + genRandNumRGB() + ", " + genRandNumRGB() + ")";
 						box.css('background-color', colorStr);
 						speedIncrease = speedIncrease + 3
 					}
+					
 					if(points >= 10)
 					{
 						changeBoxText("YOU WON");
