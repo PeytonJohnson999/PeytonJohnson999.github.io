@@ -9,6 +9,7 @@
 			width: 70px;
 			height: 70px;
 			background-color: rgb(255, 0, 0);
+			border-radius: 50px;
 			font-size: 300%;
 			text-align: center;
 			user-select: none;
@@ -32,7 +33,7 @@
 </head>
 <body class="board">
 	<!-- HTML for the box -->
-	<div class="box">?</div>
+	<div class="box">0</div>
 
 	<script>
 		(function(){
@@ -115,6 +116,8 @@
 				clearInterval(interval);
 			}
 
+			
+
 			function handleBoardClick() // Handles when you misclick
 			{
 				misclicks = misclicks + 1;
@@ -123,7 +126,6 @@
 					endGame();
 					changeBoxText("GAME OVER");
 					gameOver = true;
-					setTimeout(location.reload(), 3000);
 				}
 			}
 
@@ -181,7 +183,7 @@
 			the left side of the screen.
 			*/
 			function handleBoxClick() {
-				if (gameOver !== true && points < 10)
+				if (gameOver !== true)
 				{
 					boxClicks = boxClicks + 1;
 					positionX = genRandNumBW();
