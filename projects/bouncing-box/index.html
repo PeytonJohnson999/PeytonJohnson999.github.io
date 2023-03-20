@@ -28,36 +28,11 @@
 			background-size: cover;
 		}
 
-		/*.retry{
+		.misclicks{
 			background-color: white;
-			border-radius: 5px;
-			text-align: center;
-			font-size: 300%;
-			top: 50%;
-			left: 50%;
-			position: absolute;
-			display: none;
+			font-weight: bold;
+			width: 6.5%;
 		}
-
-		.pause{
-			background-image:url(images/pause-button.png);
-			top: 2%;
-			left: 0%;
-			position: absolute;
-			width: 100px;
-			height: 100px;
-			background-repeat: no-repeat;
-			background-size: cover;
-			border-radius: 5px;
-		}
-
-		.layer{
-			background-color: black;
-			height: 100vh;
-			width: auto;
-			top: 0%;
-			opacity: 0;
-		}*/
 
 		
 
@@ -68,6 +43,7 @@
 <body class="board">
 	<!-- HTML for the box -->
 	<div class="box">0</div>
+	<div class = "misclicks"> misclicks = 0 <div>
 	<!--<button class="retry">Retry?</button>
 	<div class = "layer"></div>
 	<button class="pause"></button>-->
@@ -85,10 +61,7 @@
 			var box = jQuery('.box');	// reference to the HTML .box element
 			var board = jQuery('.board');	// reference to the HTML .board element
 			var boardWidth = board.width();	// the maximum X-Coordinate of the screen
-			var retry = jQuery('.retry');
-			var button = document.querySelector('.retry');
-			//var pause = jQuery('.pause');
-			//var layer = jQuery('.layer');
+			var counter = jQuery('.misclicks'); // Misclicks counter
 			
 			
 			
@@ -100,8 +73,6 @@
 			// Every time the box is clicked, call the handleBoxClick Function (see below)
 			box.on('click', handleBoxClick);
 			board.on('click', handleBoardClick);
-			retry.on('click', handleRetryClick);
-			//pause.on('click', handlePauseClick);
 			
 
 			// moves the Box to a new position on the screen along the X-Axis
@@ -126,8 +97,8 @@
 			var positionX = 0; // X Coordinates for the box
 			var positionY = 0; // Y Coordinates for the box
 			var points = 0; // Points
-			var speedY = 50; // Box's  X speed
-			var speedX = 50; //Box's Y speed
+			var speedY = 5; // Box's  X speed
+			var speedX = 5; //Box's Y speed
 			var colorStr;
 			var misclicks = 0;
 			var gameOver;
@@ -163,7 +134,7 @@
 				//clearInterval(interval);
 				changeBoxText("GAME OVER");
 				gameOver = true;
-				button.style.setProperty('opacity', '100');
+				//button.style.setProperty('opacity', '100');
 				//positionX = 0;
 				speedX = 0;
 				speedY = 0;
@@ -216,6 +187,7 @@
 			function handleBoardClick() // Handles when you misclick
 			{
 				misclicks = misclicks + 1;
+				counter.text("misclicks = " + misclicks);
 				if (misclicks >= 10)
 				{
 					endGame();
@@ -326,6 +298,8 @@
 						changeBoxText("YOU WON");
 						endGame();
 					}
+
+					misclicks = misclicks - 1;
 
 				}
 				
