@@ -28,7 +28,7 @@
 			background-size: cover;
 		}
 
-		.retry{
+		/*.retry{
 			background-color: white;
 			border-radius: 5px;
 			text-align: center;
@@ -57,7 +57,7 @@
 			width: auto;
 			top: 0%;
 			opacity: 0;
-		}
+		}*/
 
 		
 
@@ -68,9 +68,9 @@
 <body class="board">
 	<!-- HTML for the box -->
 	<div class="box">0</div>
-	<button class="retry">Retry?</button>
+	<!--<button class="retry">Retry?</button>
 	<div class = "layer"></div>
-	<button class="pause"></button>
+	<button class="pause"></button>-->
 
 
 	<script>
@@ -87,8 +87,8 @@
 			var boardWidth = board.width();	// the maximum X-Coordinate of the screen
 			var retry = jQuery('.retry');
 			var button = document.querySelector('.retry');
-			var pause = jQuery('.pause');
-			var layer = jQuery('.layer');
+			//var pause = jQuery('.pause');
+			//var layer = jQuery('.layer');
 			
 			
 			
@@ -101,7 +101,7 @@
 			box.on('click', handleBoxClick);
 			board.on('click', handleBoardClick);
 			retry.on('click', handleRetryClick);
-			pause.on('click', handlePauseClick);
+			//pause.on('click', handlePauseClick);
 			
 
 			// moves the Box to a new position on the screen along the X-Axis
@@ -134,6 +134,8 @@
 			var boxClicks = 0;
 			var speedIncrease = speedX / 2;
 			var paused = false;
+			var normSpeedX = 50;
+			var normSpeedY = 50;
 			
 
 			//Functions
@@ -163,21 +165,29 @@
 				gameOver = true;
 				button.style.setProperty('opacity', '100');
 				//positionX = 0;
-				var normSpeedX = speedX
-				var normSpeedY = speedY
 				speedX = 0;
 				speedY = 0;
 			}
 			
-			function handlePauseClick(){
+			/*function handlePauseClick(){
 
-				
-				paused = true;
-				speedX = 0;
-				speedY = 0;
-				pause.css('opacity', '0.4');
-				
-			}
+				if (paused === false)
+				{
+					paused = true;
+					speedX = 0;
+					speedY = 0;
+					layer.css('opacity', '0.4');
+					pause.css('background-image', 'url(images/play-button.png)');
+				}
+				else
+				{
+					paused = false;
+					speedX = 10;
+					speedY = 10;
+					layer.css('opacity', '0');
+					pause.css('background-image', 'url(images/pause-button.png)');
+				}
+			}*/
 
 			function test(){
 				positionX = 0;
@@ -189,7 +199,6 @@
 			{
 				positionX = 0;
 				positionY = 0;
-				
 			}
 
 			function handleRetryClick()
@@ -223,36 +232,39 @@
 			*/
 			function update() 
 			{
-				//if (gameOver !== true){
+				if (gameOver !== true || paused === false){
 					//We want to increase the value of position x and y by 10
 					positionX = positionX + speedX;
 					positionY = positionY + speedY;
 					if(positionX > boardWidth)
 					{
 						speedX = speedX * -1;
+						normSpeedX = speedX * -1;
 					}
 					else if (positionX < 0)
 					{
 						speedX = speedX * -1;
+						normSpeedX = speedX * -1
 					}
 					
 					if(positionY > boardHeight)
 					{
 						speedY = speedY * -1;
+						normSpeedY = normSpeedY * -1;
 					}
 					else if(positionY < 0)
 					{
 						speedY = speedY * -1;
+						normSpeedY = normSpeedY * -1;
 					}
 
 					
-
 					moveBoxTo(positionX, positionY);
 					moveBoxTo(positionX, positionY);
 					//
 					//
 					//
-				//}
+				}
 
 			};
 
@@ -283,18 +295,22 @@
 					if (Math.sign(speedX) === -1)//Changes speed if the box is moving left
 					{
 						speedX = speedX - speedIncrease;
+						normSpeedX = normSpeedX - speedIncrease;
 					}
 					else if (Math.sign(speedX) === -1)
 					{
 						speedX = speedX + speedIncrease;
+						normSpeedX = normSpeedX + speedIncrease;
 					}
 					if (Math.sign(speedY) === -1)
 					{
 						speedY = speedY - speedIncrease;
+						normSpeedY = normSpeedY - speedIncrease;
 					}
 					else if (Math.sign(speedY) === 1)
 					{
 						speedY = speedY + speedIncrease;
+						normSpeedY = normSpeedY + speedIncrease;
 					}
 
 					changeBoxText(points);
@@ -310,6 +326,7 @@
 						changeBoxText("YOU WON");
 						endGame();
 					}
+
 				}
 				
 
