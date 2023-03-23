@@ -1,0 +1,138 @@
+<!doctype html>
+<html> 
+    <head>
+        <title>Practice</title>
+
+        <link rel = "stylesheet" href = "style.css">
+    </head>
+    <body>
+
+        <div class = "all-contents">
+            <!-- Links -->
+            <nav>
+                
+                <!-- Header -->
+                <h1 id = "links-Header">
+                    Peyton Johnson's Website
+                </h1>
+                
+                <!-- UL links -->
+                <ul class = "nav-ul">
+                    
+                    <!-- Home link -->
+                    <li class = "nav-li">
+                        <a href = "index.html"> Home </a>
+                    </li>
+                    
+                    <!-- Portfolio Link -->
+                    <li class = "nav-li">
+                        <a href = "portfolio.html"> Portfolio </a>
+                    </li>
+                    
+                    <!-- Projects Link -->
+                    <li class = "nav-li">
+                        <a href = "projects.html"> Projects </a>
+                    </li>
+
+                    
+                </ul>
+                
+            </nav>
+
+            <main id = "practiceMain">
+                <div class = "sidebar" id = "practiceSidebar">
+                    <ul id = "diceList">
+                        <li>
+                            <label>What sided dice to roll?</label>
+                        </li>
+
+                        <li>    
+                            <select id = "DiceSides" onchange="handleDiceSelect()">
+                                <option value = "4-sided die">4 sided die</option>
+                                <option value = "6-sided die">6 sided die</option>
+                                <option value = "8-sided die">8 sided die</option>
+                                <option value = "10-sided die">10 sided die</option>
+                                <option value = "12-sided die">12 sided die</option>
+                                <option value = "20-sided die">20 sided die</option>
+                                <option value = "100-sided die">100 sided die</option>
+                            </select>
+                        </li>
+
+                        <li class = "List">
+                            <label>How many dice to roll?</label>
+                        </li>
+
+                        <li>
+                            <input id = "DiceRolls" type="number" value = 1>
+                        </li>
+
+                        <li class = "List">
+                            <button onclick = "handleDiceRoll()">Roll Dice</button>
+                        </li>
+                        
+                        <li class = "List">
+                            <input id = "backgroundInput" type="file" accept="image/*" onchange = "handleNewBackground()">
+                        </li>
+                    </ul>
+                    
+                </div>
+                <div class = "content">
+                    <div>
+                        <img id = "background">
+                    </div>
+                    
+                </div>
+            </main>
+        </div>
+
+        <script>
+            //Variables
+            //
+            var diceSidesList = document.getElementById("DiceSides");
+            var diceSides = diceSidesList.value;
+            //
+            var diceRollsList = document.getElementById("DiceRolls");
+            var diceRolls = diceRollsList.value;
+            //
+            var backgroundInput = document.getElementById("backgroundInput");
+            var backgroundInputSrc = backgroundInput.src;
+            //
+            var background = document.getElementById('background');
+            background.src = backgroundInputSrc
+
+            function handleNewBackground(){
+                background.src = backgroundInputSrc;
+            }
+            
+
+            
+            function genRandNum(max){
+                return Math.ceil(Math.random() * max);
+            }
+            
+
+            function handleDiceRoll(){
+                // Updates how many sides are on the dice
+                //diceSides = diceSidesList.value;
+                //diceSides = diceSides.replace(diceSides.slice((diceSides.length - 10), diceSides.length), '');
+                // Updates how many times to roll the dice
+                diceRolls = diceRollsList.value;
+                // 
+                
+                var result;
+                for (let i = 1; i <= diceRolls; i++)
+                {
+                    result = genRandNum(diceSides);
+                    alert("result = " + result);
+                }
+            }
+
+
+            function handleDiceSelect(){
+                diceSides = diceSidesList.value;
+                diceSides = diceSides.replace(diceSides.slice((diceSides.length - 10), diceSides.length), '');
+            }
+
+        </script>
+    </body>
+</html>

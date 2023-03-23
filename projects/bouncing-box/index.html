@@ -113,9 +113,6 @@
 			var gameOver;
 			var boxClicks = 0;
 			var speedIncrease = speedX / 2;
-			var paused = false;
-			var normSpeedX = 50;
-			var normSpeedY = 50;
 			
 
 			//Functions
@@ -140,34 +137,11 @@
 
 			function endGame() // Stops the box from moving to end the game
 			{
-				//clearInterval(interval);
 				changeBoxText("GAME OVER");
 				gameOver = true;
-				//button.style.setProperty('opacity', '100');
-				//positionX = 0;
 				speedX = 0;
 				speedY = 0;
 			}
-			
-			/*function handlePauseClick(){
-
-				if (paused === false)
-				{
-					paused = true;
-					speedX = 0;
-					speedY = 0;
-					layer.css('opacity', '0.4');
-					pause.css('background-image', 'url(images/play-button.png)');
-				}
-				else
-				{
-					paused = false;
-					speedX = 10;
-					speedY = 10;
-					layer.css('opacity', '0');
-					pause.css('background-image', 'url(images/pause-button.png)');
-				}
-			}*/
 
 			function test(){
 				positionX = 0;
@@ -213,7 +187,7 @@
 			*/
 			function update() 
 			{
-				if (gameOver !== true || paused === false){
+				if (gameOver !== true){
 					//We want to increase the value of position x and y by 10
 					positionX = positionX + speedX;
 					positionY = positionY + speedY;

@@ -171,3 +171,22 @@ h2, h3
     color: #454545;
 }
 
+#practiceMain{
+    background-color: white;
+}
+
+#practiceSidebar{
+    display: block;
+    flex: 1;
+    padding: 15px;
+    border-radius: 10px;
+    font-size: large;
+}
+
+#diceList{
+    list-style-type: none;
+}
+
+.List{
+    margin-top: 10px;
+}
