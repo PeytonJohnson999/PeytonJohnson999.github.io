@@ -38,6 +38,8 @@ h1
     margin: 0;
 }
 
+
+
 #nav-ul 
 {
     list-style-image: none;
@@ -181,12 +183,4 @@ h2, h3
     padding: 15px;
     border-radius: 10px;
     font-size: large;
-}
-
-#diceList{
-    list-style-type: none;
-}
-
-.List{
-    margin-top: 10px;
 }
