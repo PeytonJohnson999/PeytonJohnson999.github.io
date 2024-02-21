@@ -3,6 +3,7 @@ body {
   background-color: darkgreen;
 }
 
+
 #board {
   width: 440px;
   height: 440px;
@@ -20,6 +21,7 @@ body {
   height: 20px;
   position: absolute;
   user-select: none;
+  border-radius: 100%;
 }
 
 .snake {
