@@ -40,6 +40,13 @@ function runProgram(){
     speedY : 0,
   }
 
+  var walker2 = {
+    positionX : BOARDWIDTH - WALKERWIDTH,
+    positionY: BOARDHEIGHT - WALKERHEIGHT,
+    speedX : 0,
+    speedY : 0,
+  }
+
 
   // one-time setup
   var interval = setInterval(newFrame, FRAMES_PER_SECOND_INTERVAL);
@@ -60,61 +67,36 @@ function runProgram(){
     repositionGameItem();
     redrawGameItem();
     checkBorderCollision();
-
-    console.log("x: " + walker.positionX);
-    console.log("y: " + walker.positionY)
-    console.log("speed x: " + walker.speedX);
-    console.log("speed y: " + walker.speedY)
-
-    
-  }
-
-  function repositionGameItem(){
-    // Changing walker's position
-    walker.positionX += walker.speedX;
-    walker.positionY += walker.speedY;
-  }
-
-  function redrawGameItem(){
-    // Updating walker on the screen
-    $("#walker").css('left', walker.positionX);
-    $("#walker").css('top', walker.positionY);
-  }
-
-  function checkBorderCollision(){
-    if ((walker.positionX >= BOARDWIDTH - WALKERWIDTH && !(walker.speedX <= 0))|| (walker.positionX <= 0 && !(walker.speedX >= 0))){
-      walker.speedX = 0;
-    }
-    if ((walker.positionY >= BOARDHEIGHT - WALKERHEIGHT && !(walker.speedY <= 0)) || (walker.positionY <= 0 && !(walker.speedY >= 0))) {
-      walker.speedY = 0;
-    }
+    detectPlayerCollision();
   }
   
   /* 
   Called in response to events.
   */
+
+  // Called in response to user pressing a movement key
   function handleKeyDown(event) {
-    if ((event.which === KEY.A || event.which === KEY.LEFT) && !(walker.positionX <= 0)){
+
+    // player1
+    if (event.which === KEY.LEFT && !(walker.positionX <= 0)){
       walker.speedX = -1 * WALKSPEED;
       if (walker.speedY !== 0){
         walker.speedX /= 2;
       }
-      // walker.speedX = -1 * WALKSPEED
-    }else if ((event.which === KEY.W || event.which === KEY.UP) && !(walker.positionY <= 0)){
+    }else if (event.which === KEY.UP && !(walker.positionY <= 0)){
       walker.speedY = -1 * WALKSPEED
       if (walker.speedX !== 0){
         walker.speedY /= 2;
       }
 
-      // walker.speedY = -1 * WALKSPEED
-    }else if ((event.which === KEY.D || event.which === KEY.RIGHT) && !(walker.positionX >= BOARDWIDTH - WALKERWIDTH)){
+    }else if ( event.which === KEY.RIGHT && !(walker.positionX >= BOARDWIDTH - WALKERWIDTH)){
       walker.speedX = WALKSPEED
       if (walker.speedY !== 0){
         walker.speedX /= 2;
       }
 
       // walker.speedX = WALKSPEED
-    }else if ((event.which === KEY.S || event.which === KEY.DOWN) && !(walker.positionY >= BOARDHEIGHT - WALKERWIDTH)){
+    }else if (event.which === KEY.DOWN && !(walker.positionY >= BOARDHEIGHT - WALKERWIDTH)){
       walker.speedY = WALKSPEED
       if (walker.speedX !== 0){
         walker.speedY /= 2;
@@ -122,11 +104,44 @@ function runProgram(){
 
       // walker.speedY = WALKSPEED
     }
+
+    // player2
+    else if (event.which === KEY.A && !(walker2.positionX <= 0)){
+      walker2.speedX = -1 * WALKSPEED;
+      if (walker2.speedY !== 0){
+        walker2.speedX /= 2;
+      }
+      // walker.speedX = -1 * WALKSPEED
+    }else if (event.which === KEY.W && !(walker2.positionY <= 0)){
+      walker2.speedY = -1 * WALKSPEED
+      if (walker2.speedX !== 0){
+        walker2.speedY /= 2;
+      }
+
+      // walker.speedY = -1 * WALKSPEED
+    }else if ( event.which === KEY.D && !(walker2.positionX >= BOARDWIDTH - WALKERWIDTH)){
+      walker2.speedX = WALKSPEED
+      if (walker2.speedY !== 0){
+        walker2.speedX /= 2;
+      }
+
+      // walker.speedX = WALKSPEED
+    }else if (event.which === KEY.S && !(walker2.positionY >= BOARDHEIGHT - WALKERWIDTH)){
+      walker2.speedY = WALKSPEED
+      if (walker2.speedX !== 0){
+        walker2.speedY /= 2;
+      }
+
+      // walker.speedY = WALKSPEED
+    }
   }
 
+  // Called in response to user releasing a movement key
   function handleKeyUp(event){
+
     // When the player releases a movement key, stop their movement in that direction
-    if ((event.which === KEY.A || event.which === KEY.LEFT) && !(walker.positionX <= 0)){
+    // player1
+    if (event.which === KEY.LEFT && !(walker.positionX <= 0)){
       if (walker.speedX < 0){
         walker.speedX = 0
       }
@@ -137,8 +152,7 @@ function runProgram(){
         walker.speedY = -1 * WALKSPEED
       }
 
-      // walker.speedX = 0
-    }else if ((event.which === KEY.W || event.which === KEY.UP) && !(walker.positionY <= 0)){
+    }else if ( event.which === KEY.UP && !(walker.positionY <= 0)){
       if (walker.speedY < 0){
         walker.speedY = 0
       }
@@ -149,8 +163,7 @@ function runProgram(){
         walker.speedX = -1 * WALKSPEED
       }
 
-      // walker.speedY = 0
-    }else if ((event.which === KEY.D || event.which === KEY.RIGHT) && !(walker.positionX >= BOARDWIDTH - WALKERWIDTH)){
+    }else if ( event.which === KEY.RIGHT && !(walker.positionX >= BOARDWIDTH - WALKERWIDTH)){
       if (walker.speedX > 0){
         walker.speedX = 0
       }
@@ -162,7 +175,7 @@ function runProgram(){
       }
 
       // walker.speedX = 0
-    }else if ((event.which === KEY.S || event.which === KEY.DOWN) && !(walker.positionY >= BOARDHEIGHT - WALKERWIDTH)){
+    }else if ( event.which === KEY.DOWN && !(walker.positionY >= BOARDHEIGHT - WALKERWIDTH)){
       if (walker.speedY > 0){
         walker.speedY = 0
       }
@@ -172,16 +185,92 @@ function runProgram(){
       }else if(walker.speedX < 0){
         walker.speedX = -1 * WALKSPEED
       }
+    }
 
-      // walker.speedY = 0
+
+    // player2
+    else if ( event.which === KEY.S && !(walker2.positionY >= BOARDHEIGHT - WALKERWIDTH)){
+      if (walker2.speedY > 0){
+        walker2.speedY = 0
+      }
+
+      if (walker2.speedX > 0){
+        walker2.speedX = WALKSPEED
+      }else if(walker2.speedX < 0){
+        walker2.speedX = -1 * WALKSPEED
+      }
+    }else if ( event.which === KEY.D && !(walker2.positionX >= BOARDWIDTH - WALKERWIDTH)){
+      if (walker2.speedX > 0){
+        walker2.speedX = 0
+      }
+
+      if (walker2.speedY > 0){
+        walker2.speedY = WALKSPEED
+      }else if (walker2.speedY < 0) {
+        walker2.speedY = -1 * WALKSPEED
+      }
+
+    }else if ( event.which === KEY.W && !(walker2.positionY <= 0)){
+      if (walker2.speedY < 0){
+        walker2.speedY = 0
+      }
+
+      if (walker2.speedX > 0){
+        walker2.speedX = WALKSPEED
+      }else if(walker2.speedX < 0){
+        walker2.speedX = -1 * WALKSPEED
+      }
+    
+    }else if (event.which === KEY.A && !(walker2.positionX <= 0)){
+      if (walker2.speedX < 0){
+        walker2.speedX = 0
+      }
+
+      if (walker2.speedY > 0){
+        walker2.speedY = WALKSPEED
+      }else if (walker2.speedY < 0) {
+        walker2.speedY = -1 * WALKSPEED
+      }
+
     }
   }
 
+  // var plrCollisionDebounce = false
+
+  // Checks for collision between player1 and player2
+  // variable for flipflopping between colors
+  var flipflop = true
+  function detectPlayerCollision(){
+    
+
+    // Checks for collision
+    if (((walker.positionX >= walker2.positionX - WALKERWIDTH) && (walker.positionX <= walker2.positionX + WALKERWIDTH)) 
+    && ((walker.positionY >= walker2.positionY - WALKERHEIGHT) && (walker.positionY <= walker2.positionY + WALKERHEIGHT))
+   ){
+
+      if (flipflop === true){
+        $("#walker").css('background-color', 'red')
+        $("#walker2").css('background-color', 'blue')
+        flipflop = false
+      }else {
+        $("#walker").css('background-color', 'blue')
+        $("#walker2").css('background-color', 'red')
+        flipflop = true
+      }
+    }
+
+    
+  }
+
+  // Handles player collision
+  function handlePlayerCollision(){
+    
+  }
   ////////////////////////////////////////////////////////////////////////////////
   ////////////////////////// HELPER FUNCTIONS ////////////////////////////////////
   ////////////////////////////////////////////////////////////////////////////////
 
-  
+  // Ends the game
   function endGame() {
     // stop the interval timer
     clearInterval(interval);
@@ -189,5 +278,48 @@ function runProgram(){
     // turn off event handlers
     $(document).off();
   }
+
+  // Changes the game item's position in the code
+  function repositionGameItem(){
+    // Changing walker's position
+    // player1
+    walker.positionX += walker.speedX;
+    walker.positionY += walker.speedY;
+
+    // player2
+    walker2.positionX += walker2.speedX;
+    walker2.positionY += walker2.speedY;
+  }
+
+  // Changes the game item's position on the screen
+  function redrawGameItem(){
+    // Updating walker on the screen
+    // player1
+    $("#walker").css('left', walker.positionX);
+    $("#walker").css('top', walker.positionY);
+    // player2
+    $("#walker2").css('left', walker2.positionX);
+    $("#walker2").css('top', walker2.positionY);
+  }
+
+  // Checks the game item for collision with the screen border
+  function checkBorderCollision(){
+    // player1
+    if ((walker.positionX >= BOARDWIDTH - WALKERWIDTH && !(walker.speedX <= 0))|| (walker.positionX <= 0 && !(walker.speedX >= 0))){
+      walker.speedX = 0;
+    }
+    if ((walker.positionY >= BOARDHEIGHT - WALKERHEIGHT && !(walker.speedY <= 0)) || (walker.positionY <= 0 && !(walker.speedY >= 0))) {
+      walker.speedY = 0;
+    }
+    // player2
+    if ((walker2.positionX >= BOARDWIDTH - WALKERWIDTH && !(walker2.speedX <= 0))|| (walker2.positionX <= 0 && !(walker2.speedX >= 0))){
+      walker2.speedX = 0;
+    }
+    if ((walker2.positionY >= BOARDHEIGHT - WALKERHEIGHT && !(walker2.speedY <= 0)) || (walker2.positionY <= 0 && !(walker2.speedY >= 0))) {
+      walker2.speedY = 0;
+    }
+  }
+
+  
   
 }
