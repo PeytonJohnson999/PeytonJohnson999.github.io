@@ -20,10 +20,10 @@ function resetAndRender() {
 // all of your apply functions
 function applyAndRender() {
   // Multiple TODOs: Call your apply function(s) here
-  applyFilter(reddify)
-  applyFilterNoBackground(decreaseBlue)
-  applyFilterNoBackground(increaseGreenByBlue)
-  
+  // applyFilter(reddify)
+  // applyFilterNoBackground(decreaseBlue)
+  // applyFilterNoBackground(increaseGreenByBlue)
+  applySmudge()
 
   // do not change the below line of code
   render($("#display"), image);
@@ -45,10 +45,9 @@ function applyFilter(filterFunction){
 }
 
 
-
 // TODO 7: Create the applyFilterNoBackground function
 function applyFilterNoBackground(filterFunction){
-  const BACKGROUNDCOLOR = image[0][0]
+  
     for (let row = 0; row < image.length; row++){
       for (let column = 0; column < image[row].length; column++){
         let rgb = rgbStringToArray(image[row][column])
@@ -82,3 +81,27 @@ function increaseGreenByBlue(rgb){
 }
 
 // CHALLENGE code goes below here
+
+function applySmudge(){
+  // console.log("smuding")
+  for (let row = 0; row < image.length; row++){
+    for (let column = 0; column < image[column].length; column++){
+      // console.log(image[row][column+1])
+      column < image[row].length - 1 ? image[row][column] =  smudge(image[row][column], image[row][column+1]) : image[row][column] =  smudge(image[row][column], BACKGROUNDCOLOR)
+      
+    }
+  }
+}
+
+
+function smudge(pixel, neighborPixel){
+  pixelArr = rgbStringToArray(pixel)
+  neighborPixelArr = rgbStringToArray(neighborPixel);
+//40% of the neighboring pixels color
+  pixelArr[RED] = pixelArr[RED] + (0.4 * neighborPixelArr[RED])
+  pixelArr[BLUE] = pixelArr[BLUE] + (0.4 * neighborPixelArr[BLUE])
+  pixelArr[GREEN] = pixelArr[GREEN] + (0.4 * neighborPixelArr[GREEN])
+  // print(pixel + " : " + neighborPixel)
+  console.log(pixel + " : " + neighborPixel)
+  return rgbArrayToString(pixelArr)
+}
