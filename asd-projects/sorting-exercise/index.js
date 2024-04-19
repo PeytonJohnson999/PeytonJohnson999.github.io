@@ -15,11 +15,15 @@ The CSS ids you will work with are:
 
 
 // TODO 2: Implement bubbleSort
+// This function uses a bubblesort algorithm to sort the pictures in the array
 async function bubbleSort(array){
     for (let i = 0; i < array.length; i++){
         for (let j = array.length - 1; j > i; j--){
             if (array[j].value < array[j - 1].value){
                 swap(array, j, j-1)
+                tone((((1212-120) / array.length) * array[j].value));
+                await sleep();
+                tone((((1212-120) / array.length) * array[j - 1].value));
                 updateCounter(bubbleCounter);
                 await sleep();
             }
@@ -28,33 +32,47 @@ async function bubbleSort(array){
 }
 
 // TODO 3: Implement quickSort
-// function quickSort(array, left, right){
-//     if (right.value > left.value){
-//         index = partition(array, left, right);
-//         if (arry[left].value < index.value - 1){
-//             quickSort(array, left, index - 1)
-//         }
-//         if (array[index].value < array[right].value){
-//             quickSort(array, index, right)
-//         }
-//     }
-// }
+// This function uses a quicksort algorithm to sort the pictures in the array
+async function quickSort(array, left, right){
+    if ((right - left) > 0){
+        let index = await partition(array, left, right);
+        if (left < index -1 ){
+            await quickSort(array, left, index - 1)
+        }
+        if (index < right){
+            await quickSort(array, index, right)
+        }
+    }
+}
 
 // TODOs 4 & 5: Implement partition
-// function partition(array, left, right){
-//     let pivot = Math.floor(array.length / 2);
-//     while ( left < right ){
-//         while (array[left].value < pivot){left++}
-//         while (array[right].value > pivot){right--}
-//         if (array[left].value < array[right].value){
-//             swap(array, left, right)
-//         }
-//     }
-
-//     return array[left + 1]
-// }
+// TODO: finish partition, left off uncommenting and selecting 
+// This function partitions the array during the quicksort
+async function partition(array, left, right){
+    console.log("partition called")
+  let pivot = array[Math.floor((left + right) / 2)].value;
+  let runCount = 0
+  while (left < right){
+    while (array[left].value < pivot){
+        left++; 
+    }
+    while (array[right].value > pivot){
+        right--; 
+    }
+    if (left < right){
+    //   console.log("swapping")
+      swap(array, left, right)
+      updateCounter(quickCounter);
+      await sleep();
+      
+    }
+  }
+  
+  return left + 1
+}
 
 // TODO 1: Implement swap
+// This functions swaps two elements in an array
 function swap(array, i, j){
     [array[i], array[j]] = [array[j], array[i]];
     drawSwap(array, i, j)
@@ -85,4 +103,18 @@ function drawSwap(array, i, j){
 // This function updates the specified counter
 function updateCounter(counter){
     $(counter).text("Move Count: " + (parseFloat($(counter).text().replace(/^\D+/g, '')) + 1));
+}
+
+function tone(hz){
+    let osc = AudCon.createOscillator();
+    let gain = AudCon.createGain();
+    osc.type = "triangle";
+    osc.connect(gain);
+    gain.connect(AudCon.destination);
+    let frequency = hz + 120;
+    osc.frequency.value = frequency;
+    osc.start(0);
+    gain.gain.exponentialRampToValueAtTime(
+        0.00001, AudCon.currentTime + 0.1
+    )
 }

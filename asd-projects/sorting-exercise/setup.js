@@ -6,10 +6,10 @@
 // THE CONSTANTS BELOW MAY BE ALTERED FOR EXPERIMENTATION PURPOSES
 
 // set the delay between each sort step
-const SLEEP_AMOUNT = 500;
+const SLEEP_AMOUNT = 0;
 
 // set the max number of squares
-const MAX_SQUARES = 16;
+const MAX_SQUARES = 500;
 
 // set constants for pseudo-random number generation
 const SEED = 2;
@@ -46,6 +46,8 @@ const elementClass = "sortElement";
 const bubbleClass = "bubbleElement";
 const quickClass = "quickElement";
 
+// Audio context
+let AudCon;
 
 // create undefined functions so that the program won't crash pre-function creation
 var bubbleSort, quickSort;

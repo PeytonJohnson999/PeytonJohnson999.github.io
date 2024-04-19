@@ -4,6 +4,9 @@ let STARTED = false;
 
 $(document).ready(function(){
     $("#goButton").on("click", function(){
+        AudCon = new AudioContext();
+
+
         if (!STARTED){
             STARTED = true;
 
@@ -12,6 +15,8 @@ $(document).ready(function(){
             }
             if (quickSort){
                 quickSort(quickList, 0, quickList.length-1);
+                console.log("quicksorted")
+                console.log(quickList)
             }
         }
     })
