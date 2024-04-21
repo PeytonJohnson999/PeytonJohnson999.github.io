@@ -63,7 +63,7 @@ async function partition(array, left, right){
     //   console.log("swapping")
       swap(array, left, right)
       updateCounter(quickCounter);
-      await sleep();
+    //   await sleep();
       
     }
   }
