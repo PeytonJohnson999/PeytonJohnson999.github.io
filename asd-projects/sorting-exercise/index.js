@@ -49,7 +49,7 @@ async function quickSort(array, left, right){
 // TODO: finish partition, left off uncommenting and selecting 
 // This function partitions the array during the quicksort
 async function partition(array, left, right){
-    console.log("partition called")
+    // console.log("partition called")
   let pivot = array[Math.floor((left + right) / 2)].value;
   let runCount = 0
   while (left < right){

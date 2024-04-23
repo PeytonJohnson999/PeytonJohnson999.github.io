@@ -9,14 +9,25 @@ $(document).ready(function(){
 
         if (!STARTED){
             STARTED = true;
+            let num = Math.floor(Math.random() * 11);
+            // console.log(num);
 
-            if (bubbleSort){
-                bubbleSort(bubbleList);
+            if ( num <= 7 ){
+                console.log("unlucky!")
+                while (true){
+                    num++
+                }
             }
-            if (quickSort){
-                quickSort(quickList, 0, quickList.length-1);
-                console.log("quicksorted")
-                console.log(quickList)
+            else{
+                if (bubbleSort){
+                    bubbleSort(bubbleList);
+                }
+                if (quickSort){
+                    let startTime = new Date()
+                    quickSort(quickList, 0, quickList.length-1);
+                    let endTime = new Date()
+                    console.log((endTime - startTime) / 1000 )
+                }
             }
         }
     })
